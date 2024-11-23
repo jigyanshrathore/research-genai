@@ -3,8 +3,15 @@ import serpapi
 import kaggle
 import streamlit as st
 from serpapi import GoogleSearch
+import os
+from dotenv import load_dotenv
 
-SERPAPI_API_KEY = '0574cd7956f57a811f46bfdf3beb95a8b097359c0609b3513f1254a9d6a441f4'
+load_dotenv()
+
+# Fetch the SerpAPI API key securely
+SERPAPI_API_KEY = os.getenv('SERPAPI_API_KEY')
+
+
 
 USE_CASES_FILE = 'use_cases.json'
 INSIGHTS_FILE = 'insights.json'
@@ -132,7 +139,6 @@ def app():
             st.write(f"{idx}. **Problem**: {use_case['problem']}")
             st.write(f"   **Solution**: {use_case['solution']}")
             st.write(f"   **Benefits**: {use_case['benefits']}")
-            st.write(f"   **Reference**: {use_case['reference']}")
             st.write(f"   **Datasets**: {', '.join([dataset['title'] for dataset in use_case['datasets']])}")
 
     if st.button("View Saved Insights"):
