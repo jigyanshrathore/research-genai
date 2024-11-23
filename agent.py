@@ -3,15 +3,8 @@ import serpapi
 import kaggle
 import streamlit as st
 from serpapi import GoogleSearch
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
-
-# Fetch the SerpAPI API key securely
-SERPAPI_API_KEY = os.getenv('SERPAPI_API_KEY')
-
-
+SERPAPI_API_KEY = "0574cd7956f57a811f46bfdf3beb95a8b097359c0609b3513f1254a9d6a441f4"
 
 USE_CASES_FILE = 'use_cases.json'
 INSIGHTS_FILE = 'insights.json'
@@ -66,21 +59,27 @@ class ResearchAgent:
             "api_key": SERPAPI_API_KEY
         }
 
-        search = GoogleSearch(search_params)
-        results = search.get_dict()
-        if results.get("organic_results"):
-            insights = []
-            for result in results['organic_results']:
-                insights.append({
-                    "title": result.get('title', ''),
-                    "snippet": result.get('snippet', ''),
-                    "link": result.get('link', '')
-                })
-            self.insights.append({"query": query, "insights": insights})
-            self.save_json(INSIGHTS_FILE, self.insights)
-            return insights
-        else:
-            return "No insights found for the given query."
+        try:
+            search = GoogleSearch(search_params)
+            results = search.get_dict()
+            
+            if results and results.get("organic_results"):
+                insights = []
+                for result in results["organic_results"]:
+                    insights.append({
+                        "title": result.get("title", "No title available"),
+                        "snippet": result.get("snippet", "No snippet available"),
+                        "link": result.get("link", "No link available")
+                    })
+                
+                self.insights.append({"query": query, "insights": insights})
+                self.save_json(INSIGHTS_FILE, self.insights)
+                return insights
+            else:
+                return [{"title": "No results found", "snippet": "Try using a different query.", "link": ""}]
+        except Exception as e:
+            print(f"Error fetching insights: {e}")
+            return [{"title": "Error", "snippet": str(e), "link": ""}]
 
     def search_kaggle_datasets(self, query):
         """Search for Kaggle datasets based on a query."""
@@ -108,27 +107,28 @@ def app():
     if st.button("Generate Insights and Use Cases"):
         if query:
             insights = agent.generate_insights(query)
+            
             st.subheader("Generated Insights:")
-            if isinstance(insights, list):
-                for insight in insights:
-                    st.write(f"**Title**: {insight['title']}")
-                    st.write(f"**Snippet**: {insight['snippet']}")
-                    st.write(f"**Link**: {insight['link']}")
+            for insight in insights:
+                st.write(f"**Title**: {insight['title']}")
+                st.write(f"**Snippet**: {insight['snippet']}")
+                st.write(f"**Link**: {insight['link']}")
+
+            if insights and insights[0]["title"] != "No results found":
+                processed_results = [{"title": query, "snippet": str(insights), "link": insights[0].get("link", "")}]
+                agent.generate_use_case(processed_results)
+                
+                st.subheader("Generated Use Cases:")
+                for idx, use_case in enumerate(agent.use_cases, 1):
+                    st.write(f"{idx}. **Problem**: {use_case['problem']}")
+                    st.write(f"   **Solution**: {use_case['solution']}")
+                    st.write(f"   **Benefits**: {use_case['benefits']}")
+                    st.write(f"   **Reference**: {use_case['reference']}")
+                    st.write(f"   **Datasets**: {', '.join([dataset['title'] for dataset in use_case['datasets']])}")
+
+                st.success("Insights and use cases generated successfully!")
             else:
-                st.write(insights)
-
-            processed_results = [{'title': query, 'snippet': str(insights), 'link': 'https://example.com'}]
-            agent.generate_use_case(processed_results)
-
-            st.subheader("Generated Use Cases:")
-            for idx, use_case in enumerate(agent.use_cases, 1):
-                st.write(f"{idx}. **Problem**: {use_case['problem']}")
-                st.write(f"   **Solution**: {use_case['solution']}")
-                st.write(f"   **Benefits**: {use_case['benefits']}")
-                st.write(f"   **Reference**: {use_case['reference']}")
-                st.write(f"   **Datasets**: {', '.join([dataset['title'] for dataset in use_case['datasets']])}")
-
-            st.success("Insights and use cases generated successfully!")
+                st.warning("No valid insights found to generate use cases.")
 
         else:
             st.error("Please enter a query to generate insights.")
@@ -144,7 +144,9 @@ def app():
     if st.button("View Saved Insights"):
         st.subheader("Saved Insights:")
         for idx, insight in enumerate(agent.insights, 1):
-            st.write(f"{idx}. **Query**: {insight['query']}")
+            query = insight.get('query', 'Unknown Query')  
+            st.write(f"{idx}. **Query**: {query}")
+
             st.write(f"   **Insights**: ")
             for res in insight['insights']:
                 st.write(f"     - {res['title']} | {res['snippet']} | {res['link']}")
