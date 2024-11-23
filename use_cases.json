@@ -1,0 +1,110 @@
+[
+    {
+        "problem": "Identified opportunity for AI in ARTIFICIAL INTELLIGENCE IN BANKING.",
+        "solution": "Develop AI/GenAI solutions tailored to address challenges mentioned in the article.",
+        "benefits": "Improves efficiency, customer satisfaction, and operational scalability.",
+        "reference": "https://example.com",
+        "datasets": [
+            {
+                "title": "Loan-Approval-Prediction-Dataset",
+                "url": "https://www.kaggle.com/datasets/architsharma01/loan-approval-prediction-dataset",
+                "description": ""
+            },
+            {
+                "title": "REJAFADA",
+                "url": "https://www.kaggle.com/datasets/joebeachcapital/rejafada",
+                "description": ""
+            },
+            {
+                "title": "TRENDS IN ARTIFICIAL INTELLIGENCE RESEARCH AND DE",
+                "url": "https://www.kaggle.com/datasets/sehrishshoukat/trends-in-artificial-intelligence-research-and-de",
+                "description": ""
+            },
+            {
+                "title": "MultiNLI Textual Entailment Corpus",
+                "url": "https://www.kaggle.com/datasets/thedevastator/multinli-textual-entailment-corpus",
+                "description": ""
+            },
+            {
+                "title": "children did not die",
+                "url": "https://www.kaggle.com/datasets/willianoliveiragibin/children-did-not-die",
+                "description": ""
+            },
+            {
+                "title": "Training Dataset for chatbots/Virtual Assistants",
+                "url": "https://www.kaggle.com/datasets/bitext/training-dataset-for-chatbotsvirtual-assistants",
+                "description": ""
+            },
+            {
+                "title": "Data Extraction and NLP",
+                "url": "https://www.kaggle.com/datasets/vision6/data-extraction-and-nlp",
+                "description": ""
+            },
+            {
+                "title": "Digital Habits and Employment Status Survey",
+                "url": "https://www.kaggle.com/datasets/thedevastator/digital-habits-and-employment-status-survey",
+                "description": ""
+            },
+            {
+                "title": "Processed Naira Redesign Policy Tweets",
+                "url": "https://www.kaggle.com/datasets/oladapokayodeabiodun/processed-naira-redesign-policy-tweets",
+                "description": ""
+            },
+            {
+                "title": "economic_SURINAME",
+                "url": "https://www.kaggle.com/datasets/willianoliveiragibin/economic-suriname",
+                "description": ""
+            },
+            {
+                "title": "Corporate Actions Market Data China Techsalerator",
+                "url": "https://www.kaggle.com/datasets/techsalerator/corporate-actions-market-data-china-techsalerator",
+                "description": ""
+            },
+            {
+                "title": "B2B Technographic Data in Spain",
+                "url": "https://www.kaggle.com/datasets/techsalerator/b2b-technographic-data-in-spain",
+                "description": ""
+            },
+            {
+                "title": "B2B Technographic Data in the Belarus",
+                "url": "https://www.kaggle.com/datasets/techsalerator/b2b-technographic-data-in-the-belarus",
+                "description": ""
+            },
+            {
+                "title": "B2B Technographic Data in Netherlands",
+                "url": "https://www.kaggle.com/datasets/techsalerator/b2b-technographic-data-in-netherlands",
+                "description": ""
+            },
+            {
+                "title": "B2B Technographic Data in Switzerland",
+                "url": "https://www.kaggle.com/datasets/techsalerator/b2b-technographic-data-in-switzerland",
+                "description": ""
+            },
+            {
+                "title": "Business Funding Data in Armenia",
+                "url": "https://www.kaggle.com/datasets/techsalerator/business-funding-data-in-armenia",
+                "description": ""
+            },
+            {
+                "title": "B2B Technographic Data in United Arab Emirates",
+                "url": "https://www.kaggle.com/datasets/techsalerator/b2b-technographic-data-in-united-arab-emirates",
+                "description": ""
+            },
+            {
+                "title": "B2B Technographic Data in Saudi Arabia",
+                "url": "https://www.kaggle.com/datasets/techsalerator/b2b-technographic-data-in-saudi-arabia",
+                "description": ""
+            },
+            {
+                "title": "B2B Technographic Data in the Bahrain",
+                "url": "https://www.kaggle.com/datasets/techsalerator/b2b-technographic-data-in-the-bahrain",
+                "description": ""
+            },
+            {
+                "title": "B2B Technographic Data in Latvia",
+                "url": "https://www.kaggle.com/datasets/techsalerator/b2b-technographic-data-in-latvia",
+                "description": ""
+            }
+        ]
+    }
+]
